@@ -2,14 +2,19 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 // For use outside of the UK
-var root_url = "http://www.euro-millions.com"
-
+var options = {
+    url: 'http://www.euro-millions.com',
+    headers: {
+        'User-Agent': 'request',
+        'Accept-Language': 'en-US'
+    }
+};
 ///
 /// Get Jackpot Data
 ///
 function get_prize() {
 
-    request(root_url, function(err, resp, body) {
+    request(options, function(err, resp, body) {
         if (err)
             throw err;
 
