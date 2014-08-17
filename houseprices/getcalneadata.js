@@ -1,5 +1,4 @@
 var Browser = require('zombie');
-var assert = require('assert');
 var moment = require('moment');
 var async = require('async');
 var jsonfile = require('jsonfile');
