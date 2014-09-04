@@ -2,7 +2,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var commaIt = require('comma-it');
 
-var root_url = "http://www.national-lottery.co.uk/player/p/lotterydrawgames/euromillions.ftl"
+var root_url = "https://www.national-lottery.co.uk/games/euromillions"
 
 ///
 /// Get Jackpot Data
@@ -15,14 +15,12 @@ function get_prize() {
 
         $ = cheerio.load(body);
 
-        var drawdate = $('.countdownBot').find('span').text();
-        var mainblock = $('.cdtext');
+        var mainblock = $('.jackpots');
 
         if (mainblock.length > 0) 
         {
-            var prize = mainblock.find('.cdamount').text().replace(/[^\d.-]/g, '');
-
-            console.log("The next EuroMillions draw is on " + drawdate + " and the estimated prize fund is £" + commaIt(prize, {precision:0, thousandSeperator:',', decimalSeperator:'.'}));
+            var prize = mainblock.find('h2').text().trim().replace(/\s+/g, ' ');
+            console.log('Euromillions: ' + prize);
         } 
         else 
         {
